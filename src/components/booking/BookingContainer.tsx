@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import Calendar from './Calendar';
-import TimeSlotSelector from './TimeSlotSelector';
-import BookingSummary from './BookingSummary';
-import BookingConfirmation from './BookingConfirmation';
+import { Calendar } from './Calendar';
+import { TimeSlotSelector } from './TimeSlotSelector';
+import { BookingSummary } from './BookingSummary';
+import { BookingConfirmation } from './BookingConfirmation';
 import { TimeSlot } from './types';
 
 interface BookingContainerProps {
@@ -12,7 +12,7 @@ interface BookingContainerProps {
   hourlyRate: number;
 }
 
-const BookingContainer: React.FC<BookingContainerProps> = ({
+export const BookingContainer: React.FC<BookingContainerProps> = ({
   tutorId,
   tutorName,
   subject,
@@ -61,7 +61,7 @@ const BookingContainer: React.FC<BookingContainerProps> = ({
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
         },
-        body: json.stringify({
+        body: JSON.stringify({
           tutor_id: tutorId,
           start_time: start.toISOString(),
           end_time: end.toISOString(),
@@ -189,5 +189,3 @@ const BookingContainer: React.FC<BookingContainerProps> = ({
     </div>
   );
 };
-
-export default BookingContainer;
