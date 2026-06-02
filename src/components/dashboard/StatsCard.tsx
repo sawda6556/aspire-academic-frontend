@@ -3,7 +3,7 @@ import React from 'react';
 interface StatsCardProps {
   title: string;
   value: string | number;
-  label: string;
+  label?: string;
   icon: string;
   trend?: {
     value: string;

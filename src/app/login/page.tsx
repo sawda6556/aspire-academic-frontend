@@ -116,7 +116,12 @@ export default function LoginPage() {
     <div className="flex min-h-screen flex-col bg-background">
       <Header />
       <main className="flex-grow flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={
+          <div className="text-center py-10">
+            <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-primary mx-auto"></div>
+            <p className="mt-4 text-muted">Loading login form...</p>
+          </div>
+        }>
           <LoginForm />
         </Suspense>
       </main>

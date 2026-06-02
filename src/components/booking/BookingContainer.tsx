@@ -30,10 +30,10 @@ export const BookingContainer: React.FC<BookingContainerProps> = ({
     // In production, fetch available slots for the selected date
     // For now, using mock slots
     setAvailableSlots([
-      { id: '1', start_time: '09:00', end_time: '10:00' },
-      { id: '2', start_time: '10:00', end_time: '11:00' },
-      { id: '3', start_time: '14:00', end_time: '15:00' },
-      { id: '4', start_time: '15:00', end_time: '16:00' },
+      { id: '1', start_time: '09:00', end_time: '10:00', day_of_week: 1 },
+      { id: '2', start_time: '10:00', end_time: '11:00', day_of_week: 1 },
+      { id: '3', start_time: '14:00', end_time: '15:00', day_of_week: 1 },
+      { id: '4', start_time: '15:00', end_time: '16:00', day_of_week: 1 },
     ]);
   }, [selectedDate]);
 
@@ -87,7 +87,7 @@ export const BookingContainer: React.FC<BookingContainerProps> = ({
 
   if (isConfirmed && confirmationData) {
     return (
-      <div className=\"py-12\">
+      <div className="py-12">
         <BookingConfirmation
           meetingUrl={confirmationData.meetingUrl}
           onClose={() => setIsConfirmed(false)}
@@ -99,11 +99,11 @@ export const BookingContainer: React.FC<BookingContainerProps> = ({
   const selectedSlot = availableSlots.find(s => s.id === selectedSlotId);
 
   return (
-    <div className=\"grid grid-cols-1 lg:grid-cols-3 gap-8\">
-      <div className=\"lg:col-span-2 space-y-8\">
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="lg:col-span-2 space-y-8">
         <section>
-          <h2 className=\"text-xl font-bold text-gray-800 mb-4 flex items-center\">
-            <span className=\"w-8 h-8 bg-[#2B4C7E] text-white rounded-full flex items-center justify-center text-sm mr-3\">1</span>
+          <h2 className="text-xl font-bold text-gray-800 mb-4 flex items-center">
+            <span className="w-8 h-8 bg-[#2B4C7E] text-white rounded-full flex items-center justify-center text-sm mr-3">1</span>
             Select a Date
           </h2>
           <Calendar
@@ -113,8 +113,8 @@ export const BookingContainer: React.FC<BookingContainerProps> = ({
         </section>
 
         <section>
-          <h2 className=\"text-xl font-bold text-gray-800 mb-4 flex items-center\">
-            <span className=\"w-8 h-8 bg-[#2B4C7E] text-white rounded-full flex items-center justify-center text-sm mr-3\">2</span>
+          <h2 className="text-xl font-bold text-gray-800 mb-4 flex items-center">
+            <span className="w-8 h-8 bg-[#2B4C7E] text-white rounded-full flex items-center justify-center text-sm mr-3">2</span>
             Available Time Slots
           </h2>
           <TimeSlotSelector
@@ -125,22 +125,22 @@ export const BookingContainer: React.FC<BookingContainerProps> = ({
           />
         </section>
 
-        <section className=\"bg-gold-50 p-6 rounded-xl border border-[#C9A962]/30 bg-[#C9A962]/5\">
-          <div className=\"flex items-start\">
-            <div className=\"pt-1\">
+        <section className="bg-gold-50 p-6 rounded-xl border border-[#C9A962]/30 bg-[#C9A962]/5">
+          <div className="flex items-start">
+            <div className="pt-1">
               <input
-                id=\"trial-booking\"
-                type=\"checkbox\"
+                id="trial-booking"
+                type="checkbox"
                 checked={isTrial}
                 onChange={(e) => setIsTrial(e.target.checked)}
-                className=\"w-5 h-5 text-[#C9A962] border-gray-300 rounded focus:ring-[#C9A962]\"
+                className="w-5 h-5 text-[#C9A962] border-gray-300 rounded focus:ring-[#C9A962]"
               />
             </div>
-            <div className=\"ml-4\">
-              <label htmlFor=\"trial-booking\" className=\"text-sm font-bold text-gray-800 cursor-pointer\">
+            <div className="ml-4">
+              <label htmlFor="trial-booking" className="text-sm font-bold text-gray-800 cursor-pointer">
                 Book a 10-minute free trial
               </label>
-              <p className=\"text-xs text-gray-500 mt-1\">
+              <p className="text-xs text-gray-500 mt-1">
                 First time with this tutor? You can book a free 10-minute trial session to discuss your needs.
               </p>
             </div>
@@ -148,10 +148,10 @@ export const BookingContainer: React.FC<BookingContainerProps> = ({
         </section>
       </div>
 
-      <div className=\"lg:col-span-1\">
-        <div className=\"sticky top-8\">
-          <h2 className=\"text-xl font-bold text-gray-800 mb-4 flex items-center\">
-            <span className=\"w-8 h-8 bg-[#2B4C7E] text-white rounded-full flex items-center justify-center text-sm mr-3\">3</span>
+      <div className="lg:col-span-1">
+        <div className="sticky top-8">
+          <h2 className="text-xl font-bold text-gray-800 mb-4 flex items-center">
+            <span className="w-8 h-8 bg-[#2B4C7E] text-white rounded-full flex items-center justify-center text-sm mr-3">3</span>
             Review & Confirm
           </h2>
           
@@ -168,18 +168,18 @@ export const BookingContainer: React.FC<BookingContainerProps> = ({
               isLoading={isLoading}
             />
           ) : (
-            <div className=\"bg-gray-50 p-8 rounded-xl text-center text-gray-400 border border-dashed border-gray-200\">
-              <svg className=\"w-12 h-12 mx-auto mb-3 opacity-20\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">
-                <path strokeLinecap=\"round\" strokeLinejoin=\"round\" strokeWidth=\"2\" d=\"M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z\" />
+            <div className="bg-gray-50 p-8 rounded-xl text-center text-gray-400 border border-dashed border-gray-200">
+              <svg className="w-12 h-12 mx-auto mb-3 opacity-20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              <p className=\"text-sm\">Please select a time slot to see the summary</p>
+              <p className="text-sm">Please select a time slot to see the summary</p>
             </div>
           )}
 
-          <div className=\"mt-6 p-4 bg-gray-50 rounded-lg\">
-            <div className=\"flex items-center text-xs text-gray-500\">
-              <svg className=\"w-4 h-4 mr-2 text-green-500\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">
-                <path strokeLinecap=\"round\" strokeLinejoin=\"round\" strokeWidth=\"2\" d=\"M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04M12 2.944a11.955 11.955 0 01-8.618 3.04m17.236 0L21 12a11.955 11.955 0 01-11.955 11.955 11.955 11.955 0 01-11.955-11.955l.382-8.96m17.236 0A11.955 11.955 0 0112 2.944z\" />
+          <div className="mt-6 p-4 bg-gray-50 rounded-lg">
+            <div className="flex items-center text-xs text-gray-500">
+              <svg className="w-4 h-4 mr-2 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04M12 2.944a11.955 11.955 0 01-8.618 3.04m17.236 0L21 12a11.955 11.955 0 01-11.955 11.955 11.955 11.955 0 01-11.955-11.955l.382-8.96m17.236 0A11.955 11.955 0 0112 2.944z" />
               </svg>
               Secure & Privacy-Focused Booking
             </div>

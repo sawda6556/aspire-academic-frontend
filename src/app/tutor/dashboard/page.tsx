@@ -2,15 +2,15 @@
 
 import React, { useEffect, useState } from 'react';
 import TutorDashboardLayout from '@/components/dashboard/TutorDashboardLayout';
-import StatsCard from '@/components/dashboard/StatsCard';
+import { StatsCard } from '@/components/dashboard/StatsCard';
 import { useRouter } from 'next/navigation';
 
 export default function TutorDashboard() {
   const [stats, setStats] = useState([
-    { label: 'Total Earnings', value: '$0.00', icon: '💰' },
-    { label: 'Active Students', value: '0', icon: '👥' },
-    { label: 'Lessons This Week', value: '0', icon: '📅' },
-    { label: 'Resource Sales', value: '0', icon: '📂' },
+    { label: '', title: 'Total Earnings', value: '$0.00', icon: '💰' },
+    { label: '', title: 'Active Students', value: '0', icon: '👥' },
+    { label: '', title: 'Lessons This Week', value: '0', icon: '📅' },
+    { label: '', title: 'Resource Sales', value: '0', icon: '📂' },
   ]);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
@@ -36,10 +36,10 @@ export default function TutorDashboard() {
           const publishedCount = resources.filter((r: any) => r.status === 'PUBLISHED').length;
           
           setStats([
-            { label: 'Total Earnings', value: `$${(totalSales * 10).toFixed(2)}`, icon: '💰' },
-            { label: 'Published Resources', value: publishedCount.toString(), icon: '📂' },
-            { label: 'Active Students', value: '3', icon: '👥' },
-            { label: 'Lessons This Week', value: '5', icon: '📅' },
+            { label: '', title: 'Total Earnings', value: `$${(totalSales * 10).toFixed(2)}`, icon: '💰' },
+            { label: '', title: 'Published Resources', value: publishedCount.toString(), icon: '📂' },
+            { label: '', title: 'Active Students', value: '3', icon: '👥' },
+            { label: '', title: 'Lessons This Week', value: '5', icon: '📅' },
           ]);
         }
       } catch (err) {
@@ -68,7 +68,13 @@ export default function TutorDashboard() {
           <>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
               {stats.map((stat) => (
-                <StatsCard key={stat.label} {...stat} />
+                <StatsCard 
+                  key={stat.title}
+                  title={stat.title}
+                  value={stat.value}
+                  label={stat.label}
+                  icon={stat.icon}
+                />
               ))}
             </div>
 

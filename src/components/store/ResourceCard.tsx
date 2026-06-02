@@ -12,6 +12,7 @@ interface ResourceCardProps {
   reviewCount: number;
   previewUrl: string;
   gradeLevel: string;
+  category?: string;
 }
 
 const ResourceCard: React.FC<ResourceCardProps> = ({
@@ -24,6 +25,7 @@ const ResourceCard: React.FC<ResourceCardProps> = ({
   reviewCount,
   previewUrl,
   gradeLevel,
+  category,
 }) => {
   return (
     <Link href={`/store/${id}`}>
