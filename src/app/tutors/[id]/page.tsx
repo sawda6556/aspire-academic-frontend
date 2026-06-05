@@ -44,17 +44,20 @@ export default function TutorProfilePage({ params }: { params: Promise<{ id: str
           setTutor({
             ...MOCK_TUTOR,
             ...data,
+            // Use ID from params
+            id: resolvedParams.id,
             // Ensure qualifications is an array for the UI if it comes as a string
             qualifications: typeof data.qualifications === 'string' 
               ? data.qualifications.split('\n').filter((q: string) => q.trim().length > 0)
-              : MOCK_TUTOR.qualifications
+              : (Array.isArray(data.qualifications) ? data.qualifications : MOCK_TUTOR.qualifications)
           });
         } else {
-          setTutor(MOCK_TUTOR);
+          // If fetch fails, we still use mock but with the real ID
+          setTutor({ ...MOCK_TUTOR, id: resolvedParams.id });
         }
       } catch (err) {
         console.error('Failed to fetch tutor:', err);
-        setTutor(MOCK_TUTOR);
+        setTutor({ ...MOCK_TUTOR, id: resolvedParams.id });
       } finally {
         setIsLoading(false);
       }

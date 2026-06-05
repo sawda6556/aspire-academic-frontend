@@ -3,11 +3,13 @@
 import { useState, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
+import { useAuth } from '@/contexts/AuthContext';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 
 function LoginForm() {
   const router = useRouter();
+  const { login } = useAuth();
   const searchParams = useSearchParams();
   const registered = searchParams.get('registered');
   
@@ -36,7 +38,7 @@ function LoginForm() {
 
       if (response.ok) {
         const data = await response.json();
-        localStorage.setItem('token', data.access_token);
+        login(data.access_token);
         router.push('/dashboard');
       } else {
         const data = await response.json();
