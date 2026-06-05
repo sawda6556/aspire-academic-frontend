@@ -10,21 +10,27 @@ interface BookingContainerProps {
   tutorName: string;
   subject: string;
   hourlyRate: number;
+  initialIsTrial?: boolean;
 }
 
 export const BookingContainer: React.FC<BookingContainerProps> = ({
   tutorId,
   tutorName,
   subject,
-  hourlyRate
+  hourlyRate,
+  initialIsTrial = false
 }) => {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
   const [selectedSlotId, setSelectedSlotId] = useState<string | null>(null);
-  const [isTrial, setIsTrial] = useState(false);
+  const [isTrial, setIsTrial] = useState(initialIsTrial);
   const [isLoading, setIsLoading] = useState(false);
   const [isConfirmed, setIsConfirmed] = useState(false);
   const [confirmationData, setConfirmationData] = useState<{ meetingUrl: string } | null>(null);
   const [availableSlots, setAvailableSlots] = useState<TimeSlot[]>([]);
+
+  useEffect(() => {
+    setIsTrial(initialIsTrial);
+  }, [initialIsTrial]);
 
   useEffect(() => {
     // In production, fetch available slots for the selected date
@@ -54,7 +60,7 @@ export const BookingContainer: React.FC<BookingContainerProps> = ({
     end.setHours(parseInt(eh), parseInt(em), 0);
 
     try {
-      const token = localStorage.getItem('auth_token');
+      const token = localStorage.getItem('token');
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'}/bookings`, {
         method: 'POST',
         headers: {
