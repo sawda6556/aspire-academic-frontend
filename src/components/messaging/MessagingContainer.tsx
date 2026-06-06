@@ -11,18 +11,16 @@ interface MessagingContainerProps {
   currentUserId: string;
   token: string;
   initialConversations?: Conversation[];
-  initialActiveConversationId?: string;
 }
 
 export const MessagingContainer: React.FC<MessagingContainerProps> = ({
   currentUserId,
   token,
   initialConversations = [],
-  initialActiveConversationId,
 }) => {
   const [conversations, setConversations] = useState<Conversation[]>(initialConversations);
   const [activeConversationId, setActiveConversationId] = useState<string | null>(
-    initialActiveConversationId || (initialConversations.length > 0 ? initialConversations[0].otherUser.id : null)
+    initialConversations.length > 0 ? initialConversations[0].otherUser.id : null
   );
   const [messages, setMessages] = useState<Message[]>([]);
   

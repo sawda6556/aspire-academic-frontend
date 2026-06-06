@@ -1,9 +1,7 @@
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
 
 interface ProfileHeaderProps {
   tutor: {
-    id: string;
     full_name: string;
     country: string;
     avatar_url?: string;
@@ -15,22 +13,9 @@ interface ProfileHeaderProps {
 }
 
 export default function ProfileHeader({ tutor }: ProfileHeaderProps) {
-  const router = useRouter();
   const rating = tutor.rating || 4.9;
   const reviewCount = tutor.review_count || 124;
   const isVerified = tutor.verification_status === 'APPROVED';
-
-  const handleMessage = () => {
-    router.push(`/messages?tutorId=${tutor.id}`);
-  };
-
-  const handleBookTrial = () => {
-    router.push(`/book/${tutor.id}?trial=true`);
-  };
-
-  const handleBookLesson = () => {
-    router.push(`/book/${tutor.id}`);
-  };
 
   return (
     <section className="bg-white border-b border-surface">
@@ -77,22 +62,13 @@ export default function ProfileHeader({ tutor }: ProfileHeaderProps) {
             </div>
 
             <div className="flex flex-wrap items-center justify-center md:justify-start gap-4">
-              <button 
-                onClick={handleMessage}
-                className="rounded-lg border-2 border-primary bg-white px-8 py-3 text-sm font-bold text-primary hover:bg-surface transition-colors"
-              >
+              <button className="rounded-lg border-2 border-primary bg-white px-8 py-3 text-sm font-bold text-primary hover:bg-surface transition-colors">
                 Message
               </button>
-              <button 
-                onClick={handleBookTrial}
-                className="rounded-lg bg-gold px-8 py-3 text-sm font-bold text-white hover:bg-gold/90 transition-colors"
-              >
+              <button className="rounded-lg bg-gold px-8 py-3 text-sm font-bold text-white hover:bg-gold/90 transition-colors">
                 Book Trial
               </button>
-              <button 
-                onClick={handleBookLesson}
-                className="rounded-lg bg-primary px-8 py-3 text-sm font-bold text-white hover:bg-primary/90 transition-colors"
-              >
+              <button className="rounded-lg bg-primary px-8 py-3 text-sm font-bold text-white hover:bg-primary/90 transition-colors">
                 Book Lesson
               </button>
             </div>
