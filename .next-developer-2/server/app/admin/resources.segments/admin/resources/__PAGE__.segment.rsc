@@ -1,0 +1,5 @@
+1:"$Sreact.fragment"
+2:I[97367,["/_next/static/chunks/01xlw8hd842-c.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"OutletBoundary"]
+3:"$Sreact.suspense"
+0:{"rsc":["$","$1","c",{"children":[["$","div",null,{"children":[["$","h1",null,{"className":"text-2xl font-bold text-gray-900","children":"Resource Moderation"}],["$","div",null,{"className":"mt-10 p-12 bg-white rounded-xl border border-dashed border-gray-200 flex flex-col items-center justify-center text-center","children":[["$","div",null,{"className":"text-4xl mb-4","children":"📚"}],["$","h2",null,{"className":"text-lg font-semibold text-gray-900","children":"Store Integration Pending"}],["$","p",null,{"className":"text-gray-500 max-w-sm mt-2","children":"The Resource Store is currently being implemented. This moderation dashboard will be available once the store module is live."}]]}]]}],null,["$","$L2",null,{"children":["$","$3",null,{"name":"Next.MetadataOutlet","children":"$@4"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"urnFztPa-HGeAqufVYY5f"}
+4:null
