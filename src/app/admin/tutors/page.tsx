@@ -1,188 +1,68 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import Header from '@/components/layout/Header';
-import Footer from '@/components/layout/Footer';
+import axios from 'axios';
 
 export default function AdminTutorReview() {
   const [tutors, setTutors] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  const fetchTutors = async () => {
+    try {
+      setIsLoading(true);
+      const token = localStorage.getItem('token');
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'}/tutor-profiles`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      setTutors(response.data.filter((t: any) => t.verification_status === 'PENDING'));
+    } catch (err) {
+      console.error('Failed to fetch tutors:', err);
+      setError('Failed to load tutor applications');
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   useEffect(() => {
-    // In a real app, this would be restricted to admin users only
-    fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'}/tutor-profiles`)
-      .then((res) => res.json())
-      .then((data) => {
-        setTutors(data.filter((t: any) => t.verification_status === 'PENDING'));
-        setIsLoading(false);
-      })
-      .catch((err) => {
-        console.error('Failed to fetch tutors:', err);
-        setIsLoading(false);
-      });
+    fetchTutors();
   }, []);
 
   const handleReview = async (tutorId: string, status: 'APPROVED' | 'REJECTED') => {
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'}/tutor-profiles/admin/review/${tutorId}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ status }),
-      });
-
-      if (response.ok) {
-        setTutors(tutors.filter((t) => t.id !== tutorId));
-      }
+      const token = localStorage.getItem('token');
+      await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'}/tutor-profiles/admin/review/${tutorId}`,
+        { status },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      fetchTutors(); // Refresh list
     } catch (err) {
       console.error('Failed to review tutor:', err);
-    }
-  };
-
-  const handleDbsStatusChange = async (tutorId: string, status: 'VERIFIED' | 'REJECTED') => {
-    try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'}/tutor-profiles/admin/review-dbs/${tutorId}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ status }),
-      });
-
-      if (response.ok) {
-        const updatedTutor = await response.json();
-        setTutors(tutors.map((t) => t.id === tutorId ? { ...t, dbs_verified_status: updatedTutor.dbs_verified_status } : t));
-      }
-    } catch (err) {
-      console.error('Failed to review DBS:', err);
+      alert('Failed to update tutor status');
     }
   };
 
   return (
-    <div className="flex min-h-screen flex-col bg-background">
-      <Header />
-      <main className="flex-grow container mx-auto max-w-7xl px-4 py-12">
-        <h1 className="text-3xl font-bold text-heading mb-8">Admin: Tutor Verification Review</h1>
-        
-        {isLoading ? (
-          <div className="text-center py-12">Loading...</div>
-        ) : tutors.length === 0 ? (
-          <div className="text-center py-12 bg-white rounded-2xl shadow-sm ring-1 ring-surface text-muted">
-            No pending tutor applications.
-          </div>
-        ) : (
-          <div className="space-y-6">
-            {tutors.map((tutor) => (
-              <div key={tutor.id} className="bg-white p-8 rounded-2xl shadow-sm ring-1 ring-surface">
-                <div className="flex flex-col md:flex-row justify-between gap-8">
-                  <div className="flex-grow space-y-4">
-                    <h2 className="text-xl font-bold text-heading">{tutor.full_name}</h2>
-                    <p className="text-sm text-muted">Country: {tutor.country}</p>
-                    <p className="text-sm text-muted">Bio: {tutor.bio}</p>
-                    
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-                      <div className="space-y-2">
-                        <h3 className="text-sm font-bold text-heading uppercase">ID Document</h3>
-                        {tutor.id_document_url ? (
-                          <a 
-                            href={`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'}${tutor.id_document_url}`} 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            className="block p-4 border rounded-lg hover:bg-surface transition-colors text-primary text-sm font-medium"
-                          >
-                            View ID Document
-                          </a>
-                        ) : (
-                          <span className="text-red-500 text-xs italic">Missing ID document</span>
-                        )}
-                      </div>
-                      
-                      <div className="space-y-2">
-                        <h3 className="text-sm font-bold text-heading uppercase">Proof of Address</h3>
-                        {tutor.address_proof_url ? (
-                          <a 
-                            href={`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'}${tutor.address_proof_url}`} 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            className="block p-4 border rounded-lg hover:bg-surface transition-colors text-primary text-sm font-medium"
-                          >
-                            View Address Proof
-                          </a>
-                        ) : (
-                          <span className="text-red-500 text-xs italic">Missing address proof</span>
-                        )}
-                      </div>
+    <div>
+      <h1 className=\"text-2xl font-bold text-gray-900\">Tutor Applications</h1>
+      <p className=\"text-gray-500 mt-1\">Review and approve new tutor registrations</p>
 
-                      {tutor.country === 'United Kingdom' && (
-                        <div className="col-span-1 md:col-span-2 space-y-4 pt-4 border-t">
-                          <h3 className="text-sm font-bold text-heading uppercase">Enhanced DBS Verification</h3>
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div className="space-y-1">
-                                <p className="text-xs text-muted">DBS Certificate</p>
-                                {tutor.dbs_certificate_url ? (
-                                    <a 
-                                        href={`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'}${tutor.dbs_certificate_url}`} 
-                                        target="_blank" 
-                                        rel="noopener noreferrer"
-                                        className="block p-4 border rounded-lg hover:bg-surface transition-colors text-primary text-sm font-medium"
-                                    >
-                                        View DBS Certificate
-                                    </a>
-                                ) : (
-                                    <span className="text-red-500 text-xs italic">Missing DBS Certificate</span>
-                                )}
-                            </div>
-                            <div className="space-y-1">
-                                <p className="text-xs text-muted">Update Service Info</p>
-                                <div className="p-3 border rounded-lg bg-background text-xs space-y-1">
-                                    <p><span className="font-semibold">Registered:</span> {tutor.is_on_update_service ? 'Yes' : 'No'}</p>
-                                    <p><span className="font-semibold">Number:</span> {tutor.dbs_certificate_number || 'N/A'}</p>
-                                    <p><span className="font-semibold">Status:</span> <span className={`font-bold ${tutor.dbs_verified_status === 'VERIFIED' ? 'text-teal' : 'text-coral'}`}>{tutor.dbs_verified_status}</span></p>
-                                </div>
-                            </div>
-                          </div>
-                          
-                          <div className="flex gap-2">
-                              <button 
-                                onClick={() => handleDbsStatusChange(tutor.id, 'VERIFIED')}
-                                className="bg-teal text-white px-3 py-1.5 rounded text-xs font-bold hover:bg-teal/90"
-                              >
-                                Mark DBS Verified
-                              </button>
-                              <button 
-                                onClick={() => handleDbsStatusChange(tutor.id, 'REJECTED')}
-                                className="bg-coral text-white px-3 py-1.5 rounded text-xs font-bold hover:bg-coral/90"
-                              >
-                                Reject DBS
-                              </button>
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                  
-                  <div className="flex flex-col gap-3 min-w-[150px]">
-                    <button
-                      onClick={() => handleReview(tutor.id, 'APPROVED')}
-                      className="w-full rounded-lg bg-teal text-white py-3 text-sm font-bold hover:bg-teal/90 transition-colors"
-                    >
-                      Approve
-                    </button>
-                    <button
-                      onClick={() => handleReview(tutor.id, 'REJECTED')}
-                      className="w-full rounded-lg border-2 border-coral text-coral py-3 text-sm font-bold hover:bg-coral/5 transition-colors"
-                    >
-                      Reject
-                    </button>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-      </main>
-      <Footer />
+      {error && (
+        <div className=\"mt-4 p-4 bg-red-50 text-red-600 rounded-lg\">
+          {error}
+        </div>
+      )}
+
+      <div className=\"mt-8\">
+        {isLoading ? (
+          <div className=\"flex justify-center py-12\">\n            <div className=\"animate-spin rounded-full h-8 w-8 border-b-2 border-slate-900\"></div>\n          </div>
+        ) : tutors.length === 0 ? (
+          <div className=\"bg-white rounded-xl border border-dashed border-gray-200 p-12 text-center\">\n            <p className=\"text-gray-500\">No pending tutor applications found</p>\n          </div>
+        ) : (
+          <div className=\"space-y-6\">
+            {tutors.map((tutor) => (
+              <div key={tutor.id} className=\"bg-white rounded-xl border border-gray-100 shadow-sm p-6\">\n                <div className=\"flex flex-col md:flex-row justify-between gap-6\">\n                  <div className=\"flex-1\">\n                    <div className=\"flex items-center gap-4\">\n                      <div className=\"h-12 w-12 rounded-full bg-slate-100 flex items-center justify-center text-lg font-bold text-slate-400\">\n                        {tutor.user?.full_name?.substring(0, 2).toUpperCase() || 'TP'}\n                      </div>\n                      <div>\n                        <h2 className=\"text-lg font-bold text-gray-900\">{tutor.user?.full_name || 'N/A'}</h2>\n                        <p className=\"text-sm text-gray-500\">{tutor.subjects_taught?.join(', ') || 'No subjects listed'}</p>\n                      </div>\n                    </div>\n                    \n                    <div className=\"mt-6 grid grid-cols-1 md:grid-cols-2 gap-4\">\n                      <div>\n                        <p className=\"text-xs font-semibold text-gray-400 uppercase tracking-wider\">Experience</p>\n                        <p className=\"text-sm text-gray-700 mt-1\">{tutor.experience_background || 'N/A'}</p>\n                      </div>\n                      <div>\n                        <p className=\"text-xs font-semibold text-gray-400 uppercase tracking-wider\">Qualifications</p>\n                        <p className=\"text-sm text-gray-700 mt-1\">{tutor.qualifications_certificates || 'N/A'}</p>\n                      </div>\n                    </div>\n\n                    <div className=\"mt-6 flex flex-wrap gap-4\">\n                      {tutor.id_document_url && (\n                        <a \n                          href={`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'}${tutor.id_document_url}`}\n                          target=\"_blank\"\n                          rel=\"noopener noreferrer\"\n                          className=\"text-xs font-medium text-blue-600 bg-blue-50 px-3 py-1 rounded-full hover:bg-blue-100 transition-colors\"\n                        >\n                          View ID Document\n                        </a>\n                      )}\n                      {tutor.cert_document_url && (\n                        <a \n                          href={`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'}${tutor.cert_document_url}`}\n                          target=\"_blank\"\n                          rel=\"noopener noreferrer\"\n                          className=\"text-xs font-medium text-blue-600 bg-blue-50 px-3 py-1 rounded-full hover:bg-blue-100 transition-colors\"\n                        >\n                          View Certificates\n                        </a>\n                      )}\n                    </div>\n                  </div>\n\n                  <div className=\"flex flex-col gap-3 min-w-[140px]\">\n                    <button \n                      onClick={() => handleReview(tutor.id, 'APPROVED')}\n                      className=\"px-4 py-2 bg-green-600 text-white text-sm font-bold rounded-lg hover:bg-green-700 transition-colors\"\n                    >\n                      Approve\n                    </button>\n                    <button \n                      onClick={() => handleReview(tutor.id, 'REJECTED')}\n                      className=\"px-4 py-2 border border-red-200 text-red-600 text-sm font-bold rounded-lg hover:bg-red-50 transition-colors\"\n                    >\n                      Reject\n                    </button>\n                  </div>\n                </div>\n              </div>\n            ))}\n          </div>
+        )}\n      </div>
     </div>
-  );
-}
+  );\n}\n
