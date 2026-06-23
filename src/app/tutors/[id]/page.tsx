@@ -46,8 +46,7 @@ export default function TutorProfilePage({ params }: { params: Promise<{ id: str
             ...data,
             // Ensure qualifications is an array for the UI if it comes as a string
             qualifications: typeof data.qualifications === 'string' 
-              ? data.qualifications.split('
-').filter((q: string) => q.trim().length > 0)
+              ? data.qualifications.split('\n').filter((q: string) => q.trim().length > 0)
               : MOCK_TUTOR.qualifications
           });
         } else {

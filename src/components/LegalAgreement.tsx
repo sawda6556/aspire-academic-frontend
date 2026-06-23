@@ -15,8 +15,7 @@ export default function LegalAgreement({ title, content, onAccept, checked }: Le
       <h3 className="text-lg font-semibold text-deep-ocean-blue">{title}</h3>
       <div className="h-48 overflow-y-auto border border-gray-200 rounded-md p-4 bg-gray-50 text-sm text-gray-700">
         <div className="prose prose-sm max-w-none">
-          {content.split('
-').map((line, i) => (
+          {content.split('\n').map((line, i) => (
             <p key={i}>{line}</p>
           ))}
         </div>
