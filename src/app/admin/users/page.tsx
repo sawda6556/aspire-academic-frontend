@@ -71,4 +71,47 @@ export default function UserManagementPage() {
       <div className="mt-6 bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
         <table className="w-full text-left">
           <thead>
-            <tr className="text-xs font-semibold text-gray-400 uppercase tracking-wider bg-gray-50">\n              <th className="px-6 py-4">Email</th>\n              <th className="px-6 py-4">Type</th>\n              <th className="px-6 py-4">Gender</th>\n              <th className="px-6 py-4">Joined Date</th>\n              <th className="px-6 py-4 text-right">Actions</th>\n            </tr>\n          </thead>\n          <tbody className="divide-y divide-gray-50">\n            {loading ? (\n              <tr><td colSpan={5} className="px-6 py-10 text-center text-gray-400">Loading users...</td></tr>\n            ) : filteredUsers.length === 0 ? (\n              <tr><td colSpan={5} className="px-6 py-10 text-center text-gray-400">No users found matching your search</td></tr>\n            ) : (\n              filteredUsers.map((user) => (\n                <tr key={user.id} className="hover:bg-gray-50 transition-colors">\n                  <td className="px-6 py-4">\n                    <div className="font-medium text-gray-900">{user.email}</div>\n                  </td>\n                  <td className="px-6 py-4">\n                    <span className={`px-2 py-0.5 text-xs font-bold rounded-full ${\n                      user.user_type === 'TUTOR' ? 'bg-purple-100 text-purple-700' :\n                      user.user_type === 'PARENT' ? 'bg-blue-100 text-blue-700' :\n                      user.user_type === 'STUDENT' ? 'bg-green-100 text-green-700' :\n                      'bg-gray-100 text-gray-700'\n                    }`}>\n                      {user.user_type}\n                    </span>\n                  </td>\n                  <td className="px-6 py-4 text-sm text-gray-500 capitalize">{user.gender.toLowerCase()}</td>\n                  <td className="px-6 py-4 text-sm text-gray-500">{new Date(user.created_at).toLocaleDateString()}</td>\n                  <td className="px-6 py-4 text-right">\n                    <button className="text-sm font-semibold text-gray-400 hover:text-gray-600 mr-3">Edit</button>\n                    <button className="text-sm font-semibold text-red-400 hover:text-red-600">Suspend</button>\n                  </td>\n                </tr>\n              ))\n            )}\n          </tbody>\n        </table>\n      </div>\n    </div>\n  );\n}\n
+            <tr className="text-xs font-semibold text-gray-400 uppercase tracking-wider bg-gray-50">
+              <th className="px-6 py-4">Email</th>
+              <th className="px-6 py-4">Type</th>
+              <th className="px-6 py-4">Gender</th>
+              <th className="px-6 py-4">Joined Date</th>
+              <th className="px-6 py-4 text-right">Actions</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-gray-50">
+            {loading ? (
+              <tr><td colSpan={5} className="px-6 py-10 text-center text-gray-400">Loading users...</td></tr>
+            ) : filteredUsers.length === 0 ? (
+              <tr><td colSpan={5} className="px-6 py-10 text-center text-gray-400">No users found matching your search</td></tr>
+            ) : (
+              filteredUsers.map((user) => (
+                <tr key={user.id} className="hover:bg-gray-50 transition-colors">
+                  <td className="px-6 py-4">
+                    <div className="font-medium text-gray-900">{user.email}</div>
+                  </td>
+                  <td className="px-6 py-4">
+                    <span className={`px-2 py-0.5 text-xs font-bold rounded-full ${
+                      user.user_type === 'TUTOR' ? 'bg-purple-100 text-purple-700' :
+                      user.user_type === 'PARENT' ? 'bg-blue-100 text-blue-700' :
+                      user.user_type === 'STUDENT' ? 'bg-green-100 text-green-700' :
+                      'bg-gray-100 text-gray-700'
+                    }`}>
+                      {user.user_type}
+                    </span>
+                  </td>
+                  <td className="px-6 py-4 text-sm text-gray-500 capitalize">{user.gender.toLowerCase()}</td>
+                  <td className="px-6 py-4 text-sm text-gray-500">{new Date(user.created_at).toLocaleDateString()}</td>
+                  <td className="px-6 py-4 text-right">
+                    <button className="text-sm font-semibold text-gray-400 hover:text-gray-600 mr-3">Edit</button>
+                    <button className="text-sm font-semibold text-red-400 hover:text-red-600">Suspend</button>
+                  </td>
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}
