@@ -47,6 +47,9 @@ export default function ResourceDetailPage() {
 
     setBuying(true);
     try {
+      const isPdf = resource?.file_url?.toLowerCase().endsWith('.pdf');
+      const stripePriceId = isPdf ? 'price_1TlyKTDdsa1ZYfPhbbs40hBs' : undefined;
+
       const res = await fetch(`${apiUrl}/resources/${id}/buy`, {
         method: 'POST',
         headers: {
@@ -54,7 +57,8 @@ export default function ResourceDetailPage() {
           'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify({
-          payment_method_id: 'pm_card_visa' // Mock for now
+          payment_method_id: 'pm_card_visa', // Still kept for backward compat if needed
+          stripe_price_id: stripePriceId
         })
       });
 
