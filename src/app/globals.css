@@ -6,23 +6,29 @@
   --color-primary: #2B4C7E;
   --color-secondary: #5B8FB9;
   --color-teal: #4BA3A3;
-  --color-background: #FAFBFC;
-  --color-surface: #E8ECF1;
+  --color-background: #FEFBF6;
+  --color-surface: #F7F2E9;
   --color-muted: #6B7280;
   --color-heading: #2D3748;
   --color-gold: #C9A962;
   --color-sage: #7DA08E;
   --color-coral: #E8A598;
+
+  --image-pattern: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 30L15 40L0 30V10L15 0L30 10L45 0L60 10V30L45 40L30 30ZM30 30L45 20L60 30V50L45 60L30 50L15 60L0 50V30L15 20L30 30Z' fill='%23C9A962' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
 }
 
 :root {
-  --background: #FAFBFC;
+  --background: #FEFBF6;
   --foreground: #2D3748;
 }
 
 body {
   background-color: var(--background);
   color: var(--foreground);
+}
+
+.bg-pattern {
+  background-image: var(--image-pattern);
 }
 
 @layer base {

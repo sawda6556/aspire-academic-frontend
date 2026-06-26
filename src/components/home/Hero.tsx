@@ -2,10 +2,10 @@ import Link from 'next/link';
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden bg-background py-24 sm:py-32">
+    <section className="relative overflow-hidden bg-background bg-pattern py-24 sm:py-32">
       {/* Background decoration */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl">
-        <div className="absolute top-0 right-0 h-96 w-96 rounded-full bg-primary/5 blur-3xl" />
+        <div className="absolute top-0 right-0 h-96 w-96 rounded-full bg-gold/5 blur-3xl" />
         <div className="absolute bottom-0 left-0 h-96 w-96 rounded-full bg-secondary/5 blur-3xl" />
       </div>
 
@@ -29,7 +29,7 @@ export default function Hero() {
           <div className="mt-10 flex items-center justify-center gap-x-6">
             <Link
               href="/tutors"
-              className="rounded-lg bg-gold px-8 py-3.5 text-base font-semibold text-white shadow-sm hover:bg-gold/90 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+              className="rounded-xl bg-gold px-8 py-3.5 text-base font-semibold text-white shadow-md hover:bg-gold/90 transition-all hover:scale-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
             >
               Find a Tutor
             </Link>
@@ -44,13 +44,13 @@ export default function Hero() {
 
         {/* Search placeholder */}
         <div className="mt-16 max-w-2xl mx-auto">
-          <div className="flex items-center rounded-xl bg-white p-2 shadow-lg ring-1 ring-surface">
+          <div className="flex items-center rounded-2xl bg-white p-2 shadow-xl ring-1 ring-surface transition-shadow hover:shadow-2xl">
             <input
               type="text"
               placeholder="What subject do you want to learn?"
               className="block w-full border-0 bg-transparent py-3 px-4 text-heading placeholder:text-muted focus:ring-0 sm:text-sm"
             />
-            <button className="rounded-lg bg-primary px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-primary/90 transition-colors">
+            <button className="rounded-xl bg-primary px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-primary/90 transition-colors">
               Search
             </button>
           </div>

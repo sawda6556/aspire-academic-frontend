@@ -84,7 +84,7 @@ export default function FilterSidebar({ onFilterChange }: FilterSidebarProps) {
             setSelectedSubject('');
             handleFilterChange({ category: e.target.value, subject: '' });
           }}
-          className="w-full rounded-lg border-surface bg-white text-sm text-muted focus:border-primary focus:ring-1 focus:ring-primary"
+          className="w-full rounded-xl border-surface bg-white text-sm text-muted focus:border-gold focus:ring-1 focus:ring-gold font-medium"
         >
           <option value="">All Categories</option>
           {categories.map((cat) => (
@@ -101,7 +101,7 @@ export default function FilterSidebar({ onFilterChange }: FilterSidebarProps) {
             setSelectedSubject(e.target.value);
             handleFilterChange({ subject: e.target.value });
           }}
-          className="w-full rounded-lg border-surface bg-white text-sm text-muted focus:border-primary focus:ring-1 focus:ring-primary"
+          className="w-full rounded-xl border-surface bg-white text-sm text-muted focus:border-gold focus:ring-1 focus:ring-gold font-medium"
         >
           <option value="">All Subjects</option>
           {subjects
@@ -120,7 +120,7 @@ export default function FilterSidebar({ onFilterChange }: FilterSidebarProps) {
             setSelectedLevel(e.target.value);
             handleFilterChange({ level: e.target.value });
           }}
-          className="w-full rounded-lg border-surface bg-white text-sm text-muted focus:border-primary focus:ring-1 focus:ring-primary"
+          className="w-full rounded-xl border-surface bg-white text-sm text-muted focus:border-gold focus:ring-1 focus:ring-gold font-medium"
         >
           <option value="">All Levels</option>
           {levels.map((level) => (
@@ -137,7 +137,7 @@ export default function FilterSidebar({ onFilterChange }: FilterSidebarProps) {
             setSelectedCountry(e.target.value);
             handleFilterChange({ country: e.target.value });
           }}
-          className="w-full rounded-lg border-surface bg-white text-sm text-muted focus:border-primary focus:ring-1 focus:ring-primary"
+          className="w-full rounded-xl border-surface bg-white text-sm text-muted focus:border-gold focus:ring-1 focus:ring-gold font-medium"
         >
           <option value="">All Countries</option>
           {countries.map((country) => (
@@ -149,7 +149,7 @@ export default function FilterSidebar({ onFilterChange }: FilterSidebarProps) {
       <div>
         <div className="flex justify-between items-center mb-4">
           <h3 className="text-sm font-bold text-heading uppercase tracking-wider">Max Price</h3>
-          <span className="text-sm font-bold text-primary">${priceRange}/hr</span>
+          <span className="text-sm font-bold text-gold">£{priceRange}/hr</span>
         </div>
         <input
           type="range"
@@ -161,11 +161,11 @@ export default function FilterSidebar({ onFilterChange }: FilterSidebarProps) {
             setPriceRange(parseInt(e.target.value));
             handleFilterChange({ maxPrice: parseInt(e.target.value) });
           }}
-          className="w-full h-2 bg-surface rounded-lg appearance-none cursor-pointer accent-primary"
+          className="w-full h-2 bg-surface rounded-full appearance-none cursor-pointer accent-gold"
         />
-        <div className="flex justify-between mt-2 text-[10px] text-muted">
-          <span>$10</span>
-          <span>$200</span>
+        <div className="flex justify-between mt-2 text-[10px] text-muted font-bold">
+          <span>£10</span>
+          <span>£200</span>
         </div>
       </div>
 
@@ -179,10 +179,10 @@ export default function FilterSidebar({ onFilterChange }: FilterSidebarProps) {
                 setSelectedRating(rating);
                 handleFilterChange({ minRating: rating });
               }}
-              className={`flex-1 py-2 rounded-lg border text-xs font-medium transition-all ${
+              className={`flex-1 py-2 rounded-xl border-2 text-xs font-bold transition-all ${
                 selectedRating === rating 
-                  ? 'bg-primary text-white border-primary' 
-                  : 'border-surface text-muted hover:border-primary hover:text-primary'
+                  ? 'bg-gold text-white border-gold shadow-md' 
+                  : 'border-surface text-muted hover:border-gold hover:text-gold'
               }`}
             >
               {rating}+ ★
@@ -198,9 +198,9 @@ export default function FilterSidebar({ onFilterChange }: FilterSidebarProps) {
             <button
               key={time}
               onClick={() => toggleAvailability(time)}
-              className={`py-2 rounded-lg border text-[10px] font-medium transition-all text-center ${
+              className={`py-2 rounded-xl border-2 text-[10px] font-bold transition-all text-center ${
                 selectedAvailability.includes(time)
-                  ? 'bg-primary text-white border-primary'
+                  ? 'bg-primary text-white border-primary shadow-md'
                   : 'border-surface text-muted hover:border-primary hover:text-primary'
               }`}
             >
@@ -212,7 +212,7 @@ export default function FilterSidebar({ onFilterChange }: FilterSidebarProps) {
 
       <button 
         onClick={clearFilters}
-        className="w-full py-3 rounded-lg bg-surface text-heading text-sm font-bold hover:bg-surface/80 transition-colors"
+        className="w-full py-3 rounded-xl bg-surface text-heading text-sm font-bold hover:bg-surface/80 transition-all active:scale-95 shadow-sm"
       >
         Clear All Filters
       </button>

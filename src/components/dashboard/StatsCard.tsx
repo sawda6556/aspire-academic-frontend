@@ -13,9 +13,9 @@ interface StatsCardProps {
 
 export const StatsCard: React.FC<StatsCardProps> = ({ title, value, label, icon, trend }) => {
   return (
-    <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+    <div className="bg-white p-6 rounded-3xl shadow-md border border-surface transition-all hover:shadow-lg">
       <div className="flex items-start justify-between mb-4">
-        <div className="p-3 bg-primary/5 rounded-xl text-primary text-2xl">
+        <div className="p-3 bg-gold/10 rounded-2xl text-gold text-2xl">
           {icon}
         </div>
         {trend && (
