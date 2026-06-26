@@ -29,28 +29,28 @@ const ResourceCard: React.FC<ResourceCardProps> = ({
 }) => {
   return (
     <Link href={`/store/${id}`}>
-      <div className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden border border-gray-100 group">
+      <div className="bg-white rounded-3xl shadow-md hover:shadow-xl transition-all overflow-hidden border border-surface group hover:-translate-y-1">
         {/* Preview Image */}
-        <div className="relative aspect-[16/10] bg-gray-100">
+        <div className="relative aspect-[16/10] bg-surface">
           <Image
             src={previewUrl || '/assets/placeholder-resource.jpg'}
             alt={title}
             fill
-            className="object-cover group-hover:scale-105 transition-transform duration-300"
+            className="object-cover group-hover:scale-110 transition-transform duration-500"
           />
-          <div className="absolute top-2 right-2 bg-white/90 backdrop-blur-sm px-2 py-1 rounded text-xs font-semibold text-primary">
+          <div className="absolute top-3 right-3 bg-white/95 backdrop-blur-sm px-2.5 py-1.5 rounded-xl text-[10px] font-bold text-primary shadow-sm">
             {gradeLevel}
           </div>
         </div>
 
         {/* Content */}
-        <div className="p-4">
-          <h3 className="text-gray-900 font-semibold text-base mb-1 line-clamp-2 min-h-[3rem]">
+        <div className="p-5">
+          <h3 className="text-heading font-bold text-base mb-2 line-clamp-2 min-h-[3rem] group-hover:text-gold transition-colors">
             {title}
           </h3>
           
-          <div className="flex items-center gap-2 mb-3">
-            <div className="relative w-6 h-6 rounded-full overflow-hidden">
+          <div className="flex items-center gap-2 mb-4">
+            <div className="relative w-6 h-6 rounded-full overflow-hidden ring-1 ring-surface">
               <Image
                 src={tutorAvatar || '/assets/avatars/male-avatar.svg'}
                 alt={tutorName}
@@ -58,21 +58,21 @@ const ResourceCard: React.FC<ResourceCardProps> = ({
                 className="object-cover"
               />
             </div>
-            <span className="text-sm text-gray-500 truncate">By {tutorName}</span>
+            <span className="text-xs text-muted font-medium truncate">By {tutorName}</span>
           </div>
 
-          <div className="flex items-center gap-1 mb-4">
-            <span className="text-yellow-500 text-sm">⭐</span>
-            <span className="text-sm font-semibold text-gray-700">{rating}</span>
-            <span className="text-xs text-gray-400">({reviewCount})</span>
+          <div className="flex items-center gap-1 mb-5">
+            <span className="text-gold text-xs">★</span>
+            <span className="text-xs font-bold text-heading">{rating}</span>
+            <span className="text-[10px] text-muted font-medium">({reviewCount} reviews)</span>
           </div>
 
           <div className="flex items-center justify-between mt-auto">
-            <span className="text-lg font-bold text-gray-900">
-              {price === 0 ? 'Free' : `$${price.toFixed(2)}`}
+            <span className="text-lg font-bold text-heading">
+              {price === 0 ? 'Free' : `£${price.toFixed(2)}`}
             </span>
-            <button className="bg-primary text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-primary/90 transition-colors">
-              View Details
+            <button className="bg-gold text-white px-5 py-2.5 rounded-xl text-xs font-bold shadow-sm hover:bg-gold/90 transition-all active:scale-95">
+              View details
             </button>
           </div>
         </div>
