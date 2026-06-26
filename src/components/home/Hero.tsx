@@ -11,6 +11,15 @@ export default function Hero() {
 
       <div className="container relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center">
+          <div className="mb-8 flex justify-center">
+            <div className="relative rounded-full px-3 py-1 text-sm leading-6 text-muted ring-1 ring-surface hover:ring-primary/20 transition-all bg-white/50 backdrop-blur-sm">
+              Welcome to our growing educational community{' '}
+              <Link href="/about" className="font-semibold text-primary">
+                <span className="absolute inset-0" aria-hidden="true" />
+                Read our story <span aria-hidden="true">&rarr;</span>
+              </Link>
+            </div>
+          </div>
           <h1 className="text-4xl font-bold tracking-tight text-heading sm:text-6xl">
             Safe, Professional <span className="text-primary">Islamic-Friendly</span> Tutoring
           </h1>

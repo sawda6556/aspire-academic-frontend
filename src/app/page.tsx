@@ -3,6 +3,7 @@ import Footer from '@/components/layout/Footer';
 import Hero from '@/components/home/Hero';
 import FeaturedSubjects from '@/components/home/FeaturedSubjects';
 import Mission from '@/components/home/Mission';
+import FeaturesSection from '@/components/home/FeaturesSection';
 import HowItWorks from '@/components/home/HowItWorks';
 import CTASection from '@/components/home/CTASection';
 
@@ -18,6 +19,8 @@ export default function Home() {
 
         <Mission />
         
+        <FeaturesSection />
+
         <HowItWorks />
         
         {/* Simple Testimonials Section based on Mockups */}
