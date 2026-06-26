@@ -8,7 +8,7 @@ export default function Header() {
         <div className="flex items-center gap-2">
           <Link href="/" className="flex items-center gap-2">
             <Image
-              src="/assets/logo/logo.svg"
+              src="/assets/logo/official_logo.png"
               alt="Aspire Academic Co."
               width={150}
               height={40}

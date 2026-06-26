@@ -8,8 +8,8 @@ export default function Footer() {
         <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
           <div className="col-span-1 md:col-span-1">
             <Link href="/" className="flex items-center gap-2 mb-4">
-              <Image
-                src="/assets/logo/logo.svg"
+            <Image
+                src="/assets/logo/official_logo.png"
                 alt="Aspire Academic Co."
                 width={150}
                 height={40}
@@ -45,15 +45,24 @@ export default function Footer() {
           <div>
             <h3 className="text-sm font-semibold text-heading mb-4 uppercase tracking-wider">Connect</h3>
             <div className="flex gap-4">
-              {/* Placeholder for social icons */}
-              <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-                <span className="sr-only">Facebook</span>
-                {/* SVG Icon */}
-              </div>
-              <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-                <span className="sr-only">Twitter</span>
-                {/* SVG Icon */}
-              </div>
+              <Link
+                href="https://www.instagram.com/aspireacademicco"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors"
+              >
+                <span className="sr-only">Instagram</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+              </Link>
+              <Link
+                href="https://www.tiktok.com/@aspireacademicco"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors"
+              >
+                <span className="sr-only">TikTok</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path></svg>
+              </Link>
             </div>
           </div>
         </div>
