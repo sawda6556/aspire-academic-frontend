@@ -10,7 +10,26 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "Aspire Academic Co. | Safe, Professional Islamic-Friendly Tutoring",
-  description: "Connect with verified tutors for safe, professional, and Islamic-friendly online education.",
+  description: "Connect with verified tutors for safe, professional, and Islamic-friendly online education. High-quality tutoring for UK students.",
+  keywords: ["Islamic tutoring", "online tutoring UK", "safe education", "verified tutors", "academic support"],
+  authors: [{ name: "Aspire Academic Co." }],
+  openGraph: {
+    title: "Aspire Academic Co. | Safe, Professional Islamic-Friendly Tutoring",
+    description: "Connect with verified tutors for safe, professional, and Islamic-friendly online education.",
+    url: "https://aspireacademicco.co.uk",
+    siteName: "Aspire Academic Co.",
+    locale: "en_GB",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Aspire Academic Co. | Safe, Professional Islamic-Friendly Tutoring",
+    description: "Connect with verified tutors for safe, professional, and Islamic-friendly online education.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
