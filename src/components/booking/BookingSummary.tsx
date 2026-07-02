@@ -81,6 +81,14 @@ export const BookingSummary: React.FC<BookingSummaryProps> = ({
         )}
       </div>
 
+      <div className="text-[11px] text-gray-500 mb-4 bg-gray-50 p-3 rounded-lg border border-gray-100 text-center leading-normal">
+        By continuing, you agree to our{' '}
+        <a href="/refund" target="_blank" className="text-[#2B4C7E] hover:underline font-semibold">
+          Refund & Cancellation Policy
+        </a>
+        . No cash refunds are issued.
+      </div>
+
       <button
         onClick={onConfirm}
         disabled={isLoading}

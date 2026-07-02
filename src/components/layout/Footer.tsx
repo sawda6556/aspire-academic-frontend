@@ -39,6 +39,7 @@ export default function Footer() {
               <li><Link href="/contact" className="text-sm text-muted hover:text-primary">Contact Us</Link></li>
               <li><Link href="/privacy" className="text-sm text-muted hover:text-primary">Privacy Policy</Link></li>
               <li><Link href="/terms" className="text-sm text-muted hover:text-primary">Terms of Service</Link></li>
+              <li><Link href="/refund" className="text-sm text-muted hover:text-primary">Refund Policy</Link></li>
             </ul>
           </div>
           

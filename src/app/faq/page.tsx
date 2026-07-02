@@ -41,14 +41,6 @@ const faqs = [
       {
         q: "Can I have a trial lesson?",
         a: "Many of our tutors offer a free 10-minute trial lesson. This is a great way to meet the tutor, discuss your goals, and see if they are a good match for your learning style."
-      },
-      {
-        q: "What happens if I miss a scheduled lesson?",
-        a: "If a student misses a lesson without notice (student no-show), the tutor is paid in full. If you miss a lesson and request a makeup session, it may be granted at the tutor's sole discretion. If a tutor misses a lesson, the student receives a platform credit to rebook."
-      },
-      {
-        q: "Do we need to confirm lesson attendance?",
-        a: "Yes. Both parties must confirm lesson attendance via the platform post-session. This ensures transparency and security before any payment is finalized."
       }
     ]
   },
@@ -62,10 +54,31 @@ const faqs = [
       {
         q: "Are there any hidden fees?",
         a: "No. We believe in transparency. The lesson price includes all platform service fees and payment processing costs. There are no surprise charges."
-      },
+      }
+    ]
+  },
+  {
+    category: "Refunds & Attendance",
+    questions: [
       {
         q: "What is your refund policy?",
-        a: "We have a strict Refund Policy of No Refunds once payment is made. All transactions are final."
+        a: "We maintain a strict No Cash Refunds policy. All payments made through the Aspire Academic Co. platform are final. This ensures that tutors can manage their schedules with confidence and platform resources are used efficiently."
+      },
+      {
+        q: "What happens if a student misses a scheduled lesson?",
+        a: "If a student fails to attend a scheduled lesson without notice (student no-show), the tutor will be paid in full. The student is not entitled to a refund or automatic credit. Providing a makeup lesson is at the sole discretion of the tutor."
+      },
+      {
+        q: "What happens if a tutor misses a scheduled lesson?",
+        a: "If a tutor fails to attend a scheduled lesson (tutor no-show), the student will receive a Platform Lesson Credit. This credit can be used to rebook the lesson with the same tutor or another tutor on the platform. No cash refund will be issued."
+      },
+      {
+        q: "Do we need to confirm lesson attendance?",
+        a: "Yes. Both parties must confirm lesson attendance via the platform post-session. If there is a dispute regarding attendance, please contact info@aspireacademicco.co.uk within 48 hours of the scheduled lesson time."
+      },
+      {
+        q: "Are digital downloads from the Resource Store refundable?",
+        a: "Due to the nature of digital products, all sales in the Educational Resource Store are final and non-refundable. If you experience technical download issues, please contact our support team."
       }
     ]
   }
