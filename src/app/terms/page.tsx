@@ -24,9 +24,12 @@ export default function TermsPage() {
             All users must maintain professional and respectful behavior. Our platform is designed to be Islamic-friendly; users are expected to respect these values in their interactions.
           </p>
 
-          <h2 className="text-2xl font-bold text-heading mt-10">3. Booking & Payments</h2>
+          <h2 className="text-2xl font-bold text-heading mt-10">3. Booking, Payments & Refund Policy</h2>
           <p>
             Payments for lessons must be made through the platform's secure payment system. Lessons should be booked and attended according to the agreed schedule.
+          </p>
+          <p className="font-semibold">
+            Refund Policy: Strict No Refunds once payment is made. All transactions are final.
           </p>
 
           <h2 className="text-2xl font-bold text-heading mt-10">4. Verification</h2>
@@ -38,6 +41,22 @@ export default function TermsPage() {
           <p>
             Aspire Academic Co. provides a marketplace platform and is not responsible for the specific content of individual tutoring sessions, though we monitor for safety and quality.
           </p>
+
+          <h2 className="text-2xl font-bold text-heading mt-10">6. Lesson Attendance & No-Show Policy</h2>
+          <p>
+            Our attendance policy ensures fairness and commitment for both students and tutors:
+          </p>
+          <ul className="list-disc pl-6 space-y-2">
+            <li>
+              <strong>Makeup Sessions:</strong> Students who miss a scheduled lesson may request a makeup session, which is granted at the Tutor's sole discretion.
+            </li>
+            <li>
+              <strong>Lesson Confirmation:</strong> Both parties must confirm lesson attendance via the platform post-session.
+            </li>
+            <li>
+              <strong>No-Show Rule:</strong> If a student misses a lesson without notice, the tutor is paid in full. If a tutor misses a lesson, the student receives a platform credit to rebook.
+            </li>
+          </ul>
         </div>
       </main>
       <Footer />
