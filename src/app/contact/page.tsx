@@ -67,8 +67,12 @@ export default function ContactPage() {
               <div className="flex items-start gap-4">
                 <span className="text-primary text-2xl">📧</span>
                 <div>
-                  <h3 className="text-sm font-bold text-heading uppercase tracking-wider mb-1">Email</h3>
-                  <p className="text-muted">info@aspireacademicco.co.uk</p>
+                  <h3 className="text-sm font-bold text-heading uppercase tracking-wider mb-1">Primary Support Email</h3>
+                  <p className="text-muted">
+                    <a href="mailto:info@aspireacademicco.co.uk" className="hover:text-primary transition-colors font-semibold">
+                      info@aspireacademicco.co.uk
+                    </a>
+                  </p>
                 </div>
               </div>
 
