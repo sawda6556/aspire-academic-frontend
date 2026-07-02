@@ -9,6 +9,15 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-gold/10 bg-white/80 backdrop-blur-md">
+      {/* Top Contact Bar */}
+      <div className="bg-primary/5 border-b border-gold/5 py-1 px-4 text-center">
+        <p className="text-xs text-muted">
+          Need assistance? Email us at:{' '}
+          <a href="mailto:info@aspireacademicco.co.uk" className="text-primary hover:underline font-semibold">
+            info@aspireacademicco.co.uk
+          </a>
+        </p>
+      </div>
       <div className="container mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-2">
           <Link href="/" className="flex items-center gap-2 transition-transform hover:scale-105">

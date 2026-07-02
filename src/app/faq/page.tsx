@@ -41,6 +41,14 @@ const faqs = [
       {
         q: "Can I have a trial lesson?",
         a: "Many of our tutors offer a free 10-minute trial lesson. This is a great way to meet the tutor, discuss your goals, and see if they are a good match for your learning style."
+      },
+      {
+        q: "What happens if I miss a scheduled lesson?",
+        a: "If a student misses a lesson without notice (student no-show), the tutor is paid in full. If you miss a lesson and request a makeup session, it may be granted at the tutor's sole discretion. If a tutor misses a lesson, the student receives a platform credit to rebook."
+      },
+      {
+        q: "Do we need to confirm lesson attendance?",
+        a: "Yes. Both parties must confirm lesson attendance via the platform post-session. This ensures transparency and security before any payment is finalized."
       }
     ]
   },
@@ -54,6 +62,10 @@ const faqs = [
       {
         q: "Are there any hidden fees?",
         a: "No. We believe in transparency. The lesson price includes all platform service fees and payment processing costs. There are no surprise charges."
+      },
+      {
+        q: "What is your refund policy?",
+        a: "We have a strict Refund Policy of No Refunds once payment is made. All transactions are final."
       }
     ]
   }

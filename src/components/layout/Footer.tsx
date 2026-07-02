@@ -43,7 +43,13 @@ export default function Footer() {
           </div>
           
           <div>
-            <h3 className="text-sm font-semibold text-heading mb-4 uppercase tracking-wider">Connect</h3>
+            <h3 className="text-sm font-semibold text-heading mb-4 uppercase tracking-wider">Contact & Connect</h3>
+            <p className="text-sm text-muted mb-4">
+              Have questions? Email us at:
+              <a href="mailto:info@aspireacademicco.co.uk" className="text-primary hover:underline font-semibold block mt-1 break-all">
+                info@aspireacademicco.co.uk
+              </a>
+            </p>
             <div className="flex gap-4">
               <Link
                 href="https://www.instagram.com/aspireacademicco"
