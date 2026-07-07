@@ -20,6 +20,14 @@ export const metadata: Metadata = {
     siteName: "Aspire Academic Co.",
     locale: "en_GB",
     type: "website",
+    images: [
+      {
+        url: "https://aspireacademicco.co.uk/assets/logo/logo.png",
+        width: 1200,
+        height: 630,
+        alt: "Aspire Academic Co. Logo",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
